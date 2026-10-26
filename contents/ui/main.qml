@@ -175,6 +175,9 @@ PlasmoidItem {
                         "option", Plasmoid.configuration.keepAboveFullScreen,
                         "fullScreenActive", root.fullScreenActive);
             if (keepAbove) {
+                // The layer surface is created again on every show and takes the window's
+                // screen at that moment: set it each time so it cannot drift to another one.
+                overlay.screen = overlay.targetScreen;
                 overlay.updateOrigin();
             }
             overlay.visible = keepAbove;
@@ -186,7 +189,18 @@ PlasmoidItem {
             // Widget position on its screen, captured right before showing the surface
             property point origin
 
-            readonly property var targetScreen: full.Window.window?.screen ?? Qt.application.screens[0]
+            // Screen holding the widget. The desktop window does not expose its screen to QML,
+            // so it is looked up from the containment's geometry.
+            readonly property var targetScreen: {
+                const screens = Qt.application.screens;
+                for (let i = 0; i < screens.length; ++i) {
+                    if (screens[i].virtualX === root.screenGeometry.x
+                            && screens[i].virtualY === root.screenGeometry.y) {
+                        return screens[i];
+                    }
+                }
+                return screens[0];
+            }
 
             // The desktop window covers its whole screen, so the widget's position in that
             // window is its position on the screen. Global coordinates are not reliable on
@@ -209,7 +223,6 @@ PlasmoidItem {
             // Stay on the window's screen instead of following whichever screen is active
             LayerShell.Window.wantsToBeOnActiveScreen: false
 
-            screen: targetScreen
             flags: Qt.FramelessWindowHint | Qt.WindowDoesNotAcceptFocus
             color: "transparent"
             width: Math.max(1, full.width)
