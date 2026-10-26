@@ -62,6 +62,10 @@ PlasmoidItem {
             for (let i = 0; i < count && !found; ++i) {
                 found = data(index(i, 0), TaskManager.AbstractTasksModel.IsFullScreen) === true;
             }
+            if (found !== root.fullScreenActive) {
+                console.log("verticalpager: fullscreen window on", root.screenGeometry, ":", found,
+                            "(" + count + " windows checked)");
+            }
             root.fullScreenActive = found;
         }
 
@@ -167,6 +171,9 @@ PlasmoidItem {
                                           && root.fullScreenActive && width > 0 && height > 0
 
         onKeepAboveChanged: {
+            console.log("verticalpager: keepAbove", keepAbove, "onDesktop", root.onDesktop,
+                        "option", Plasmoid.configuration.keepAboveFullScreen,
+                        "fullScreenActive", root.fullScreenActive);
             if (keepAbove) {
                 overlay.updateOrigin();
             }
@@ -181,10 +188,14 @@ PlasmoidItem {
 
             readonly property var targetScreen: full.Window.window?.screen ?? Qt.application.screens[0]
 
+            // The desktop window covers its whole screen, so the widget's position in that
+            // window is its position on the screen. Global coordinates are not reliable on
+            // Wayland, especially on screens that do not start at 0,0.
             function updateOrigin() {
-                const pos = full.mapToGlobal(0, 0);
-                origin = Qt.point(Math.round(pos.x - targetScreen.virtualX),
-                                  Math.round(pos.y - targetScreen.virtualY));
+                const pos = full.mapToItem(null, 0, 0);
+                origin = Qt.point(Math.round(pos.x), Math.round(pos.y));
+                console.log("verticalpager: overlay at", origin, "size", width, "x", height,
+                            "on screen", targetScreen?.name);
             }
 
             LayerShell.Window.scope: "verticalpager"
