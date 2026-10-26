@@ -1,0 +1,22 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "claude@nspt.fr",
+                "Name": "Nicolas POELAERT"
+            }
+        ],
+        "Category": "Windows and Tasks",
+        "Description": "Switch between virtual desktops, laid out vertically for side panels",
+        "Description[fr]": "Basculer entre les bureaux virtuels, disposés verticalement pour les panneaux latéraux",
+        "Icon": "org.kde.plasma.pager",
+        "Id": "org.kde.plasma.verticalpager",
+        "License": "GPL-2.0+",
+        "Name": "Vertical Pager",
+        "Name[fr]": "Gestionnaire de bureaux vertical",
+        "Version": "1.0",
+        "Website": "https://github.com/NSPTFR/org.kde.plasma.verticalpager"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
