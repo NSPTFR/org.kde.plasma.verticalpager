@@ -62,10 +62,6 @@ PlasmoidItem {
             for (let i = 0; i < count && !found; ++i) {
                 found = data(index(i, 0), TaskManager.AbstractTasksModel.IsFullScreen) === true;
             }
-            if (found !== root.fullScreenActive) {
-                console.log("verticalpager: fullscreen window on", root.screenGeometry, ":", found,
-                            "(" + count + " windows checked)");
-            }
             root.fullScreenActive = found;
         }
 
@@ -171,9 +167,6 @@ PlasmoidItem {
                                           && root.fullScreenActive && width > 0 && height > 0
 
         onKeepAboveChanged: {
-            console.log("verticalpager: keepAbove", keepAbove, "onDesktop", root.onDesktop,
-                        "option", Plasmoid.configuration.keepAboveFullScreen,
-                        "fullScreenActive", root.fullScreenActive);
             if (keepAbove) {
                 // The layer surface is created again on every show and takes the window's
                 // screen at that moment: set it each time so it cannot drift to another one.
@@ -208,8 +201,6 @@ PlasmoidItem {
             function updateOrigin() {
                 const pos = full.mapToItem(null, 0, 0);
                 origin = Qt.point(Math.round(pos.x), Math.round(pos.y));
-                console.log("verticalpager: overlay at", origin, "size", width, "x", height,
-                            "on screen", targetScreen?.name);
             }
 
             LayerShell.Window.scope: "verticalpager"

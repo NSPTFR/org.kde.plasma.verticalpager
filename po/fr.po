@@ -1,0 +1,85 @@
+# French translation of the Vertical Pager plasmoid.
+# SPDX-FileCopyrightText: 2026 Nicolas POELAERT <claude@nspt.fr>
+# SPDX-License-Identifier: GPL-2.0-or-later
+msgid ""
+msgstr ""
+"Project-Id-Version: org.kde.plasma.verticalpager\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: contents/config/config.qml
+msgid "General"
+msgstr "Général"
+
+#: contents/ui/main.qml
+msgid "Desktop %1"
+msgstr "Bureau %1"
+
+#: contents/ui/main.qml
+msgid "Add Virtual Desktop"
+msgstr "Ajouter un bureau virtuel"
+
+#: contents/ui/main.qml
+msgid "Remove Last Virtual Desktop"
+msgstr "Supprimer le dernier bureau virtuel"
+
+#: contents/ui/main.qml
+msgid "Configure Virtual Desktops…"
+msgstr "Configurer les bureaux virtuels…"
+
+#: contents/ui/DesktopTile.qml
+msgid "No windows"
+msgstr "Aucune fenêtre"
+
+#: contents/ui/configGeneral.qml
+msgid "Text:"
+msgstr "Texte :"
+
+#: contents/ui/configGeneral.qml
+msgid "Desktop number"
+msgstr "Numéro du bureau"
+
+#: contents/ui/configGeneral.qml
+msgid "Desktop name"
+msgstr "Nom du bureau"
+
+#: contents/ui/configGeneral.qml
+msgid "No text"
+msgstr "Aucun texte"
+
+#: contents/ui/configGeneral.qml
+msgid "Windows:"
+msgstr "Fenêtres :"
+
+#: contents/ui/configGeneral.qml
+msgid "Show window outlines"
+msgstr "Afficher les contours des fenêtres"
+
+#: contents/ui/configGeneral.qml
+msgid "Show application icons on window outlines"
+msgstr "Afficher l'icône de l'application sur chaque fenêtre"
+
+#: contents/ui/configGeneral.qml
+msgid "Navigation:"
+msgstr "Navigation :"
+
+#: contents/ui/configGeneral.qml
+msgid "Switch desktops with the mouse wheel"
+msgstr "Changer de bureau avec la molette de la souris"
+
+#: contents/ui/configGeneral.qml
+msgid "On the desktop:"
+msgstr "Sur le bureau :"
+
+#: contents/ui/configGeneral.qml
+msgid "Stay on top of fullscreen windows"
+msgstr "Rester au-dessus des fenêtres en plein écran"
+
+#: contents/ui/configGeneral.qml
+msgid "Only applies when the widget is placed on the desktop, not in a panel."
+msgstr ""
+"Ne s'applique que lorsque le composant graphique est placé sur le bureau, et "
+"non dans un tableau de bord."

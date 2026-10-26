@@ -26,3 +26,16 @@ Then add **Vertical Pager** from the *Add Widgets…* panel. To try it out witho
 ```sh
 plasmawindowed org.kde.plasma.verticalpager
 ```
+
+## Translations
+
+Translations live in `po/<lang>.po` (French is included). After adding or changing one, rebuild the
+catalogs bundled in the package, then reinstall:
+
+```sh
+python3 po/compile.py
+kpackagetool6 -t Plasma/Applet -u .
+```
+
+`po/compile.py` writes `contents/locale/<lang>/LC_MESSAGES/plasma_applet_org.kde.plasma.verticalpager.mo`,
+where Plasma looks for the widget's translations; it does not need gettext to be installed.
