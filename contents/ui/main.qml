@@ -130,16 +130,20 @@ PlasmoidItem {
         id: full
 
         readonly property int spacing: Kirigami.Units.smallSpacing
+        // Empty space between the tiles and the widget's edges
+        readonly property int padding: Kirigami.Units.smallSpacing
+        readonly property real innerWidth: Math.max(0, width - 2 * padding)
+        readonly property real innerHeight: Math.max(0, height - 2 * padding)
 
         // Natural size of a tile, following the screen's aspect ratio
-        readonly property real naturalTileWidth: root.horizontal ? height / root.screenRatio : width
-        readonly property real naturalTileHeight: root.horizontal ? height : width * root.screenRatio
+        readonly property real naturalTileWidth: root.horizontal ? innerHeight / root.screenRatio : innerWidth
+        readonly property real naturalTileHeight: root.horizontal ? innerHeight : innerWidth * root.screenRatio
         readonly property real length: root.count * (root.horizontal ? naturalTileWidth : naturalTileHeight)
-                                       + (root.count - 1) * spacing
+                                       + (root.count - 1) * spacing + 2 * padding
 
         // On the desktop the user picks the size: shrink tiles so they all fit
-        readonly property real tileHeight: root.horizontal ? height
-            : Math.floor(Math.min(naturalTileHeight, (height - (root.count - 1) * spacing) / root.count))
+        readonly property real tileHeight: root.horizontal ? innerHeight
+            : Math.floor(Math.min(naturalTileHeight, (innerHeight - (root.count - 1) * spacing) / root.count))
         readonly property real tileWidth: root.horizontal ? Math.floor(naturalTileWidth)
             : Math.floor(tileHeight / root.screenRatio)
 
@@ -154,6 +158,7 @@ PlasmoidItem {
 
         Pager {
             anchors.fill: parent
+            anchors.margins: full.padding
             pagerRoot: root
             tileWidth: full.tileWidth
             tileHeight: full.tileHeight
@@ -229,6 +234,7 @@ PlasmoidItem {
 
             Pager {
                 anchors.fill: parent
+                anchors.margins: full.padding
                 pagerRoot: root
                 tileWidth: full.tileWidth
                 tileHeight: full.tileHeight
